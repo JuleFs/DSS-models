@@ -1,2 +1,98 @@
 <app-navbar />
-<p>mineria works!</p>
+
+<div class="flex">
+  <aside class="justify-center items-center w-1/2">
+    <div class="text-center">
+      <h1>
+        Escoge las características de la laptop que necesitas, y filtraremos los
+        resultados de nuestro datase
+      </h1>
+    </div>
+    <div class="items-center">
+      <app-select-dropdown
+        id="presupuesto"
+        spec="Presupuesto"
+        [options]="[
+          { value: '250', label: '$5,000' },
+          { value: '500', label: '$10,000' },
+          { value: '1000', label: '$20,000' },
+          { value: '2000', label: '$40,000' },
+          { value: '4000', label: '$80,000' },
+          { value: '10000', label: 'Sin límite' }
+        ]"
+        (valueChange)="onPresupuestoChange($event)"
+      />
+      <app-select-dropdown
+        id="ram"
+        spec="Memoria RAM"
+        [options]="[
+          { value: '8', label: '8gb' },
+          { value: '16', label: '16gb' },
+          { value: '32', label: '32gb' },
+          { value: '64', label: '64gb' }
+        ]"
+        (valueChange)="onRamChange($event)"
+      />
+      <app-select-dropdown
+        id="storage-type"
+        spec="Tipo de almacenamiento primario"
+        [options]="[
+          { value: 'SSD', label: 'Disco de Estado Sólido (SSD)' },
+          { value: 'HDD', label: 'Disco Duro (HDD)' }
+        ]"
+        (valueChange)="onStorageTypeChange($event)"
+      />
+      <app-select-dropdown
+        id="storage"
+        spec="Cantidad de almacenamiento primario"
+        [options]="[
+          { value: '256', label: '256gb' },
+          { value: '512', label: '512gb' },
+          { value: '1024', label: '1tb' },
+          { value: '2048', label: '2tb' }
+        ]"
+        (valueChange)="onStorageChange($event)"
+      />
+      <app-select-dropdown
+        id="peso"
+        spec="Peso máximo"
+        [options]="[
+          { value: '1', label: '1kg' },
+          { value: '2', label: '2kg' },
+          { value: '3', label: '3kg' },
+          { value: '4', label: '4kg' }
+        ]"
+        (valueChange)="onPesoChange($event)"
+      />
+      <app-select-dropdown
+        id="inches"
+        spec="Tamaño de pantalla (medido en pulgadas)"
+        [options]="[
+          { value: '13', label: '13in' },
+          { value: '15', label: '15in' },
+          { value: '17', label: '17in' }
+        ]"
+        (valueChange)="onInchesChange($event)"
+      />
+    </div>
+  </aside>
+  <aside class="justify-center items-center w-1/2 p-6">
+    <div class="justify-end">
+      <textarea
+        class="ml-10 w-5/6 h-96 border-2 border-gray-300 rounded-lg p-2 dark:border-gray-700"
+        readonly
+        name="resultados"
+        id="res"
+        >{{ result }}</textarea
+      >
+      <div class="flex justify-end">
+        <button
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          (click)="sumbit()"
+        >
+          Enviar
+        </button>
+      </div>
+    </div>
+  </aside>
+</div>
