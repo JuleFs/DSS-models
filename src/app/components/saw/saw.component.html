@@ -1,2 +1,83 @@
 <app-navbar />
-<p>saw works!</p>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold text-center mb-6">SAW Algorithm</h1>
+
+  <!-- Criterios Section -->
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold mb-4">Agregar Criterios</h2>
+    <form (ngSubmit)="addCriterio()" class="flex flex-col gap-4">
+      <div>
+        <label class="block font-medium">Nombre:</label>
+        <input
+          type="text"
+          [(ngModel)]="nuevoCriterio.nombre"
+          name="nombre"
+          required
+          class="border p-2 w-full"
+        />
+      </div>
+      <div>
+        <label class="block font-medium">Peso:</label>
+        <input
+          type="number"
+          [(ngModel)]="nuevoCriterio.peso"
+          name="peso"
+          required
+          class="border p-2 w-full"
+        />
+      </div>
+      <div>
+        <label class="block font-medium">Tipo:</label>
+        <select
+          [(ngModel)]="nuevoCriterio.tipo"
+          name="tipo"
+          required
+          class="border p-2 w-full"
+        >
+          <option value="benefit">Benefit</option>
+          <option value="cost">Cost</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Agregar Criterio</button>
+    </form>
+  </section>
+
+  <!-- Alternativas Section -->
+  <section class="mb-6">
+    <h2 class="text-xl font-semibold mb-4">Agregar Alternativas</h2>
+    <form (ngSubmit)="addAlternativa()" class="flex flex-col gap-4">
+      <div>
+        <label class="block font-medium">Nombre:</label>
+        <input
+          type="text"
+          [(ngModel)]="nuevaAlternativa.nombre"
+          name="nombre"
+          required
+          class="border p-2 w-full"
+        />
+      </div>
+      <div>
+        <label class="block font-medium">Valores (coma-separados):</label>
+        <input
+          type="text"
+          [(ngModel)]="nuevaAlternativa.valores"
+          name="valores"
+          required
+          class="border p-2 w-full"
+        />
+      </div>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Agregar Alternativa</button>
+    </form>
+  </section>
+
+  <!-- Calcular Mejor Alternativa -->
+  <section>
+    <h2 class="text-xl font-semibold mb-4">Calcular Mejor Alternativa</h2>
+    <button (click)="calcularMejorAlternativa()" class="bg-green-500 text-white px-4 py-2 rounded">
+      Calcular Mejor Opción
+    </button>
+    <div *ngIf="mejorAlternativa" class="mt-4 p-4 bg-gray-100 border rounded">
+      <p>{{ mejorAlternativa }}</p>
+    </div>
+  </section>
+</div>
