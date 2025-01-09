@@ -18,6 +18,8 @@ export class SimplexComponent {
   costoProducto: number = 0; // Costo del producto
   proceso: 'Max' | 'Min' = 'Max'; // Proceso predeterminado (Maximización o Minimización)
   resultado: string | null = null; // Resultado de la simulación
+  mensajeFactibilidad: string | null = null; // Mensaje para la factibilidad
+
 
   constructor(private simplexService: SimplexService) {}
 
@@ -49,16 +51,31 @@ export class SimplexComponent {
       Texto: this.proceso // Puede ser 'Max' o 'Min'
     };
 
+
+
     // Enviar datos al servicio
     this.simplexService.enviarParametros(datos).subscribe({
       next: (response) => {
         this.resultado = response.Mensaje; // Mostrar el resultado devuelto por el backend
       },
-      error: (err) => {
-        console.error('Error al procesar los datos:', err);
-        alert('Hubo un error al procesar los datos.');
-      }
+
     });
+
+
+  }
+
+  verificarFactibilidad(): void {
+    // Sumar sueldo y aguinaldo
+    const totalIngresos = this.sueldo + this.aguinaldo;
+
+    setTimeout(() => {
+      // Verificar si el total de ingresos es al menos el doble del costo del producto
+      if (totalIngresos >= 2 * this.costoProducto) {
+        this.mensajeFactibilidad = 'Es factible comprar un nuevo equipo.';
+      } else {
+        this.mensajeFactibilidad = 'No es factible comprar un nuevo equipo.';
+      }
+    }, 2000); // 2 segundos
   }
 }
 //   .map((valor) => parseFloat(valor.trim()));

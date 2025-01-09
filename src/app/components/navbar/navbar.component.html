@@ -1,16 +1,37 @@
-<header class="text-gray-600 body-font">
+<header class="bg-gray-800 text-gray-100 body-font shadow-lg">
   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-    <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+    <!-- Logo -->
+    <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
         <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
       </svg>
-      <span class="ml-3 text-xl">DSS Models</span>
+      <span class="ml-3 text-2xl font-bold">DSS Models</span>
     </a>
-    <nav class="md:ml-auto md:mr-auto flex flex-wrap items-center text-base justify-center">
-      <a routerLink="/simplex" class="mr-5 hover:text-gray-900">Simplex</a>
-      <a routerLink="/saw" class="mr-5 hover:text-gray-900">SAW Scoring</a>
-      <a routerLink="/mineria" class="mr-5 hover:text-gray-900">Mineria de datos</a>
-      <a routerLink="/redes_neuronales" class="mr-5 hover:text-gray-900">Redes neuronales</a>
+
+    <!-- Toggle Button for Mobile -->
+    <button
+      class=" btn md:hidden ml-auto text-gray-300 focus:outline-none"
+
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+      </svg>
+    </button>
+
+    <!-- Navigation Links -->
+    <nav class="hidden md:flex md:ml-auto md:mr-auto flex-wrap items-center text-base justify-center">
+      <a routerLink="/simplex" class="mr-5 hover:text-indigo-400 transition duration-300">Simplex</a>
+      <a routerLink="/saw" class="mr-5 hover:text-indigo-400 transition duration-300">SAW Scoring</a>
+      <a routerLink="/mineria" class="mr-5 hover:text-indigo-400 transition duration-300">Mineria de datos</a>
+      <a routerLink="/redes_neuronales" class="mr-5 hover:text-indigo-400 transition duration-300">Redes neuronales</a>
     </nav>
+
+    <!-- Action Button -->
+    <a href="#" class="inline-flex items-center bg-indigo-500 text-white border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm font-medium">
+      Contacto
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h11M9 21H7m2 0v-4a1 1 0 011-1h2a1 1 0 011 1v4m8-12h.01M5 10h11m2 0a2 2 0 00-2-2H7a2 2 0 00-2 2z" />
+      </svg>
+    </a>
   </div>
 </header>
