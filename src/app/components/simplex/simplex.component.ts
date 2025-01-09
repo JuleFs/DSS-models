@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from "../navbar/navbar.component";
+import { NavbarComponent } from '../navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,7 @@ import { SimplexService } from '../../services/simplex.service';
   standalone: true,
   imports: [NavbarComponent, CommonModule, HttpClientModule, FormsModule],
   templateUrl: './simplex.component.html',
-  styles: ``
+  styles: ``,
 })
 export class SimplexComponent {
   sueldo: number = 0; // Sueldo mensual
@@ -24,7 +24,9 @@ export class SimplexComponent {
   calcular(): void {
     // Validación de los inputs
     if (this.sueldo <= 0 || this.aguinaldo <= 0 || this.costoProducto <= 0) {
-      alert('Por favor, ingresa valores válidos para sueldo, aguinaldo y costo del producto.');
+      alert(
+        'Por favor, ingresa valores válidos para sueldo, aguinaldo y costo del producto.'
+      );
       return;
     }
 
@@ -35,29 +37,34 @@ export class SimplexComponent {
 
     // Crear las restricciones basadas en los datos del usuario
     const matrizRestricciones: number[][] = [
-      [1.0, 0.0, sueldoFloat],  // Restricción del sueldo
-      [0.0, 1.0, aguinaldoFloat] // Restricción del aguinaldo
+      [1.0, 0.0, sueldoFloat], // Restricción del sueldo
+      [0.0, 1.0, aguinaldoFloat], // Restricción del aguinaldo
     ];
 
     // Crear la función objetivo con el costo del producto
-    const funcionObjetivo: number[] = [-costoProductoFloat, -costoProductoFloat];
+    const funcionObjetivo: number[] = [
+      -costoProductoFloat,
+      -costoProductoFloat,
+    ];
 
     // Crear el JSON que será enviado al backend
     const datos = {
       Matriz: matrizRestricciones,
       Arreglo: funcionObjetivo,
-      Texto: this.proceso // Puede ser 'Max' o 'Min'
+      Texto: this.proceso, // Puede ser 'Max' o 'Min'
     };
 
     // Enviar datos al servicio
     this.simplexService.enviarParametros(datos).subscribe({
-      next: (response) => {
-        this.resultado = response.Mensaje; // Mostrar el resultado devuelto por el backend
+      next: (data) => {
+        if (data) {
+          this.resultado = data.Mensaje; // Mostrar el resultado devuelto por el backend
+        }
       },
       error: (err) => {
         console.error('Error al procesar los datos:', err);
         alert('Hubo un error al procesar los datos.');
-      }
+      },
     });
   }
 }

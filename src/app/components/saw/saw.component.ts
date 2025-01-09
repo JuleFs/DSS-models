@@ -7,12 +7,13 @@ import { Alternativa } from '../../core/interfaces/laptop';
 import { CriterioService } from '../../services/criterio.service';
 import { AlternativaService } from '../../services/alternativa.service';
 import { MejorAlternativaService } from '../../services/mejor-alternativa.service';
+import { NgIf } from '@angular/common';
 
 
 @Component({
   selector: 'app-saw',
   standalone: true,
-  imports: [NavbarComponent, FormsModule],
+  imports: [NavbarComponent, FormsModule, NgIf],
   templateUrl: './saw.component.html',
   styles: ``
 })
